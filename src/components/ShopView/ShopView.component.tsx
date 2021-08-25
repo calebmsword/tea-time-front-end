@@ -8,4 +8,5 @@ const ShopView : React.FC = () => {
     );
 }
 
+ShopView.displayName = 'ShopView';
 export default ShopView;

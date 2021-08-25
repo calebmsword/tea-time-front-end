@@ -8,4 +8,5 @@ const AddShop : React.FC = () => {
     );
 }
 
+AddShop.displayName = 'AddShop';
 export default AddShop;
