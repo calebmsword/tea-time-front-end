@@ -1,9 +1,17 @@
-import MainStyles from './Main.style';
-// import MainTypes from './Main.types';
 import React from "react";
+import { Provider } from 'react-redux';
+import store from '../../redux/store';
+
+import Header from '../Header/Header.component';
+import Navigation from '../Navigation/Navigation.component'
 
 const Main: React.FC = () => {
-    return <></>;
+    return (
+        <Provider store={store}>
+            <Header />
+            <Navigation />
+        </Provider>
+    );
 }
 
 export default Main;

@@ -12,6 +12,11 @@ function addConfig(config) {
 
     // add extra setup file
     config.setupFilesAfterEnv.push('<rootDir>/jest/setup.js');
+    
+    const s = 'Navigation';
+    config.testMatch = [
+        `<rootDir>/src/components/${s}/${s}.test.tsx`,
+    ];
 
     config.testPathIgnorePatterns = [
     ];
