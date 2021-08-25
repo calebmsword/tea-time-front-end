@@ -1,3 +1,3 @@
 # tea-time-front-end
 
-Chirper killer. This app will kill Chirper. Chirper is dead now. Chirper ain't shit boy. Chirper AIN'T SHIT
+The front end for teaTime, a mobile application for Android designed to let users discover new tea shops. An iOS app is in alpha!
