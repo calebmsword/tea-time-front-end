@@ -58,3 +58,10 @@ export interface TeaShopState {
     teaShops: ITeaShop[],
     error: Error | null,
 }
+
+export class State {
+	teaShops: TeaShop[];
+	constructor(teaShops: TeaShop[]) {
+		this.teaShops = teaShops;
+	}
+}

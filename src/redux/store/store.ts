@@ -10,5 +10,4 @@ const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
 
 sagaMiddleware.run(rootSaga);
 
-// export type Store = ReturnType<typeof reducer>;
 export default store;

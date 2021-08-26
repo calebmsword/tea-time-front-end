@@ -19,7 +19,7 @@ function addConfig(config: WithEnzymeReturn) : Config {
     config.setupFilesAfterEnv = x && [...x, '<rootDir>/jest/setup.ts']; // x can be undefined, TypeScript gets mad if we don't account for that
     
     config.testMatch = [
-        `<rootDir>/src/redux/sagas/sagas.test.ts`,
+        `<rootDir>/src/components/SearchShops/SearchShops.test.tsx`,
     ];
 
     config.testPathIgnorePatterns = [

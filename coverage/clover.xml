@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1630017045457" clover="3.2.0">
+  <project timestamp="1630017045457" name="All files">
+    <metrics statements="144" coveredstatements="43" conditionals="25" coveredconditionals="17" methods="54" coveredmethods="14" elements="223" coveredelements="74" complexity="0" loc="144" ncloc="144" packages="17" files="35" classes="35"/>
+    <package name="src">
+      <metrics statements="13" coveredstatements="13" conditionals="4" coveredconditionals="4" methods="4" coveredmethods="4"/>
+      <file name="entities.ts" path="C:\Users\Bigmo\Revature\tea-time-fe\src\entities.ts">
+        <metrics statements="13" coveredstatements="13" conditionals="4" coveredconditionals="4" methods="4" coveredmethods="4"/>
+        <line num="19" count="3" type="stmt"/>
+        <line num="20" count="3" type="stmt"/>
+        <line num="21" count="3" type="stmt"/>
+        <line num="35" count="3" type="stmt"/>
+        <line num="36" count="3" type="stmt"/>
+        <line num="37" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="38" count="1" type="stmt"/>
+        <line num="40" count="2" type="stmt"/>
+        <line num="45" count="1" type="stmt"/>
+        <line num="52" count="3" type="stmt"/>
+        <line num="53" count="3" type="stmt"/>
+        <line num="54" count="3" type="stmt"/>
+        <line num="61" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components">
+      <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="colors.ts" path="C:\Users\Bigmo\Revature\tea-time-fe\src\components\colors.ts">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.AddShop">
+      <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="AddShop.component.tsx" path="C:\Users\Bigmo\Revature\tea-time-fe\src\components\AddShop\AddShop.component.tsx">
+        <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+      </file>
+      <file name="AddShop.styles.tsx" path="C:\Users\Bigmo\Revature\tea-time-fe\src\components\AddShop\AddShop.styles.tsx">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="AddShop.test.tsx" path="C:\Users\Bigmo\Revature\tea-time-fe\src\components\AddShop\AddShop.test.tsx">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="AddShop.types.ts" path="C:\Users\Bigmo\Revature\tea-time-fe\src\components\AddShop\AddShop.types.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.Header">
+      <metrics statements="8" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
+      <file name="Header.component.tsx" path="C:\Users\Bigmo\Revature\tea-time-fe\src\components\Header\Header.component.tsx">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+      <file name="Header.styles.tsx" path="C:\Users\Bigmo\Revature\tea-time-fe\src\components\Header\Header.styles.tsx">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="Header.test.tsx" path="C:\Users\Bigmo\Revature\tea-time-fe\src\components\Header\Header.test.tsx">
+        <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+      </file>
+      <file name="Header.types.tsx" path="C:\Users\Bigmo\Revature\tea-time-fe\src\components\Header\Header.types.tsx">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.LoadingSearchedShops">
+      <metrics statements="9" coveredstatements="2" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="1"/>
+      <file name="LoadingSearchedShops.component.tsx" path="C:\Users\Bigmo\Revature\tea-time-fe\src\components\LoadingSearchedShops\LoadingSearchedShops.component.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="25" type="stmt"/>
+      </file>
+      <file name="LoadingSearchedShops.test.tsx" path="C:\Users\Bigmo\Revature\tea-time-fe\src\components\LoadingSearchedShops\LoadingSearchedShops.test.tsx">
+        <metrics statements="7" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+      </file>
+      <file name="LoadingSearchedShops.types.tsx" path="C:\Users\Bigmo\Revature\tea-time-fe\src\components\LoadingSearchedShops\LoadingSearchedShops.types.tsx">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.Main">
+      <metrics statements="18" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
+      <file name="Main.component.tsx" path="C:\Users\Bigmo\Revature\tea-time-fe\src\components\Main\Main.component.tsx">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
+      <file name="Main.styles.ts" path="C:\Users\Bigmo\Revature\tea-time-fe\src\components\Main\Main.styles.ts">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+      </file>
+      <file name="Main.test.tsx" path="C:\Users\Bigmo\Revature\tea-time-fe\src\components\Main\Main.test.tsx">
+        <metrics statements="15" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.Navigation">
+      <metrics statements="21" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
+      <file name="Navigation.component.tsx" path="C:\Users\Bigmo\Revature\tea-time-fe\src\components\Navigation\Navigation.component.tsx">
+        <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+      </file>
+      <file name="Navigation.styles.tsx" path="C:\Users\Bigmo\Revature\tea-time-fe\src\components\Navigation\Navigation.styles.tsx">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="Navigation.test.tsx" path="C:\Users\Bigmo\Revature\tea-time-fe\src\components\Navigation\Navigation.test.tsx">
+        <metrics statements="15" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.SearchShops">
+      <metrics statements="22" coveredstatements="22" conditionals="12" coveredconditionals="11" methods="7" coveredmethods="7"/>
+      <file name="SearchShops.component.tsx" path="C:\Users\Bigmo\Revature\tea-time-fe\src\components\SearchShops\SearchShops.component.tsx">
+        <metrics statements="22" coveredstatements="22" conditionals="12" coveredconditionals="11" methods="7" coveredmethods="7"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="13" count="24" type="stmt"/>
+        <line num="14" count="48" type="cond" truecount="2" falsecount="0"/>
+        <line num="15" count="28" type="stmt"/>
+        <line num="17" count="20" type="stmt"/>
+        <line num="18" count="20" type="stmt"/>
+        <line num="19" count="60" type="cond" truecount="2" falsecount="0"/>
+        <line num="20" count="20" type="stmt"/>
+        <line num="21" count="60" type="cond" truecount="2" falsecount="0"/>
+        <line num="23" count="40" type="cond" truecount="1" falsecount="1"/>
+        <line num="24" count="40" type="cond" truecount="2" falsecount="0"/>
+        <line num="27" count="20" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="31" count="25" type="stmt"/>
+        <line num="32" count="25" type="stmt"/>
+        <line num="33" count="133" type="stmt"/>
+        <line num="35" count="25" type="stmt"/>
+        <line num="36" count="15" type="stmt"/>
+        <line num="41" count="25" type="stmt"/>
+        <line num="50" count="9" type="stmt"/>
+        <line num="51" count="9" type="stmt"/>
+        <line num="58" count="1" type="stmt"/>
+      </file>
+      <file name="SearchShops.styles.ts" path="C:\Users\Bigmo\Revature\tea-time-fe\src\components\SearchShops\SearchShops.styles.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="SearchShops.types.ts" path="C:\Users\Bigmo\Revature\tea-time-fe\src\components\SearchShops\SearchShops.types.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.ShopInList">
+      <metrics statements="17" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="9" coveredmethods="1"/>
+      <file name="ShopInList.component.tsx" path="C:\Users\Bigmo\Revature\tea-time-fe\src\components\ShopInList\ShopInList.component.tsx">
+        <metrics statements="4" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="9" type="stmt"/>
+        <line num="9" count="9" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+      </file>
+      <file name="ShopInList.test.tsx" path="C:\Users\Bigmo\Revature\tea-time-fe\src\components\ShopInList\ShopInList.test.tsx">
+        <metrics statements="13" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+      </file>
+      <file name="ShopInList.types.tsx" path="C:\Users\Bigmo\Revature\tea-time-fe\src\components\ShopInList\ShopInList.types.tsx">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.ShopView">
+      <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="ShopView.component.tsx" path="C:\Users\Bigmo\Revature\tea-time-fe\src\components\ShopView\ShopView.component.tsx">
+        <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+      </file>
+      <file name="ShopView.test.tsx" path="C:\Users\Bigmo\Revature\tea-time-fe\src\components\ShopView\ShopView.test.tsx">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="ShopView.types.ts" path="C:\Users\Bigmo\Revature\tea-time-fe\src\components\ShopView\ShopView.types.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.redux">
+      <metrics statements="9" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="0"/>
+      <file name="types.ts" path="C:\Users\Bigmo\Revature\tea-time-fe\src\redux\types.ts">
+        <metrics statements="9" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="65" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.redux.actions">
+      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1"/>
+      <file name="teaShopActions.ts" path="C:\Users\Bigmo\Revature\tea-time-fe\src\redux\actions\teaShopActions.ts">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1"/>
+        <line num="3" count="15" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.redux.reducers">
+      <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="rootReducer.ts" path="C:\Users\Bigmo\Revature\tea-time-fe\src\redux\reducers\rootReducer.ts">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.redux.reducers.teaShopReducer">
+      <metrics statements="7" coveredstatements="0" conditionals="5" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="teaShopReducer.ts" path="C:\Users\Bigmo\Revature\tea-time-fe\src\redux\reducers\teaShopReducer\teaShopReducer.ts">
+        <metrics statements="7" coveredstatements="0" conditionals="5" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="28" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="29" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.redux.sagas">
+      <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="rootSaga.ts" path="C:\Users\Bigmo\Revature\tea-time-fe\src\redux\sagas\rootSaga.ts">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.redux.sagas.getTeaShopSagas">
+      <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <file name="getTeaShopSagas.ts" path="C:\Users\Bigmo\Revature\tea-time-fe\src\redux\sagas\getTeaShopSagas\getTeaShopSagas.ts">
+        <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.redux.store">
+      <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="store.ts" path="C:\Users\Bigmo\Revature\tea-time-fe\src\redux\store\store.ts">
+        <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
