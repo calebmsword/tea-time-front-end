@@ -1,0 +1,208 @@
+import type { Config as JestConfig } from '@jest/types';
+import type { ForegroundColor } from 'chalk';
+import type { ReportOptions } from 'istanbul-reports';
+declare type CoverageProvider = 'babel' | 'v8';
+declare type Timers = 'real' | 'fake' | 'modern' | 'legacy';
+export declare type Path = string;
+export declare type Glob = string;
+export declare type HasteConfig = {
+    /** Whether to hash files using SHA-1. */
+    computeSha1?: boolean;
+    /** The platform to use as the default, e.g. 'ios'. */
+    defaultPlatform?: string | null;
+    /** Path to a custom implementation of Haste. */
+    hasteImplModulePath?: string;
+    /** All platforms to target, e.g ['ios', 'android']. */
+    platforms?: Array<string>;
+    /** Whether to throw on error on module collision. */
+    throwOnModuleCollision?: boolean;
+};
+export declare type CoverageReporterName = keyof ReportOptions;
+export declare type CoverageReporterWithOptions<K = CoverageReporterName> = K extends CoverageReporterName ? ReportOptions[K] extends never ? never : [K, Partial<ReportOptions[K]>] : never;
+export declare type CoverageReporters = Array<CoverageReporterName | CoverageReporterWithOptions>;
+export declare type ReporterConfig = [string, Record<string, unknown>];
+export declare type TransformerConfig = [string, Record<string, unknown>];
+export interface ConfigGlobals {
+    [K: string]: unknown;
+}
+export declare type DisplayName = {
+    name: string;
+    color: typeof ForegroundColor;
+};
+
+export interface Config {
+    automock?: boolean;
+    bail?: number;
+    cache?: boolean;
+    cacheDirectory?: Path;
+    clearMocks?: boolean;
+    changedFilesWithAncestor?: boolean;
+    changedSince?: string;
+    collectCoverage?: boolean;
+    collectCoverageFrom?: Array<Glob>;
+    collectCoverageOnlyFrom?: {
+        [key: string]: boolean;
+    };
+    coverageDirectory?: string;
+    coveragePathIgnorePatterns?: Array<string>;
+    coverageProvider?: CoverageProvider;
+    coverageReporters?: CoverageReporters;
+    coverageThreshold?: {
+        global?: {
+            [key: string]: number;
+        };
+    };
+    dependencyExtractor?: string;
+    detectLeaks?: boolean;
+    detectOpenHandles?: boolean;
+    displayName?: string | {
+        name: string;
+        color: "black" | "red" | "green" | "yellow" | "blue" | "magenta" | "cyan" | "white" | "gray" | "grey" | "blackBright" | "redBright" | "greenBright" | "yellowBright" | "blueBright" | "magentaBright" | "cyanBright" | "whiteBright" | "bgBlack" | "bgRed" | "bgGreen" | "bgYellow" | "bgBlue" | "bgMagenta" | "bgCyan" | "bgWhite" | "bgGray" | "bgGrey" | "bgBlackBright" | "bgRedBright" | "bgGreenBright" | "bgYellowBright" | "bgBlueBright" | "bgMagentaBright" | "bgCyanBright" | "bgWhiteBright";
+    };
+    expand?: boolean;
+    extraGlobals?: Array<string>;
+    filter?: Path;
+    findRelatedTests?: boolean;
+    forceCoverageMatch?: Array<Glob>;
+    forceExit?: boolean;
+    json?: boolean;
+    globals?: ConfigGlobals;
+    globalSetup?: string | null;
+    globalTeardown?: string | null;
+    haste?: HasteConfig;
+    injectGlobals?: boolean;
+    reporters?: Array<string | ReporterConfig>;
+    logHeapUsage?: boolean;
+    lastCommit?: boolean;
+    listTests?: boolean;
+    mapCoverage?: boolean;
+    maxConcurrency?: number;
+    maxWorkers?: number | string;
+    moduleDirectories?: Array<string>;
+    moduleFileExtensions?: Array<string>;
+    moduleLoader?: Path;
+    moduleNameMapper?: [string, string][];
+    modulePathIgnorePatterns?: Array<string>;
+    modulePaths?: Array<string>;
+    name?: string;
+    nonFlagArgs?: Array<string>;
+    noStackTrace?: boolean;
+    notify?: boolean;
+    notifyMode?: string;
+    onlyChanged?: boolean;
+    onlyFailures?: boolean;
+    outputFile?: Path;
+    passWithNoTests?: boolean;
+    preprocessorIgnorePatterns?: Array<Glob>;
+    preset?: string | null;
+    prettierPath?: string | null;
+    projects?: any;
+    replname?: string | null;
+    resetMocks?: boolean;
+    resetModules?: boolean;
+    resolver?: Path | null;
+    restoreMocks?: boolean;
+    rootDir?: Path;
+    roots?: Array<Path>;
+    runner?: string;
+    runTestsByPath?: boolean;
+    scriptPreprocessor?: string;
+    setupFiles?: Array<Path>;
+    setupTestFrameworkScriptFile?: Path;
+    setupFilesAfterEnv?: Array<Path>;
+    silent?: boolean;
+    skipFilter?: boolean;
+    skipNodeResolution?: boolean;
+    slowTestThreshold?: number;
+    snapshotResolver?: Path;
+    snapshotSerializers?: Array<Path>;
+    errorOnDeprecated?: boolean;
+    testEnvironment?: string;
+    testEnvironmentOptions?: Record<string, unknown>;
+    testFailureExitCode?: string | number;
+    testLocationInResults?: boolean;
+    testMatch?: Array<Glob>;
+    testNamePattern?: string;
+    testPathDirs?: Array<Path>;
+    testPathIgnorePatterns?: Array<string>;
+    testPathPattern?: string;
+    testRegex?: (string | RegExp)[];
+    testResultsProcessor?: string;
+    testRunner?: string;
+    testSequencer?: string;
+    testURL?: string;
+    testTimeout?: number;
+    timers?: Timers;
+    transform?: [string, string, Record<string, unknown>][];
+    transformIgnorePatterns?: Array<Glob>;
+    watchPathIgnorePatterns?: Array<string>;
+    unmockedModulePathPatterns?: Array<string>;
+    updateSnapshot?: boolean;
+    useStderr?: boolean;
+    verbose?: boolean;
+    watch?: boolean;
+    watchAll?: boolean;
+    watchman?: boolean;
+    watchPlugins?: Array<string | [string, Record<string, unknown>]>;
+};
+
+export type WithEnzymeReturn = {
+    setupFilesAfterEnv: string[];
+    snapshotSerializers: string[];
+    testEnvironmentOptions: {
+        enzymeAdapter: string;
+    };
+    testEnvironment: string;
+    automock: boolean;
+    browser: boolean;
+    cache: boolean;
+    cacheDirectory: string;
+    clearMocks: boolean;
+    coveragePathIgnorePatterns: string[];
+    cwd: string;
+    dependencyExtractor?: string;
+    detectLeaks: boolean;
+    detectOpenHandles: boolean;
+    displayName?: string | {
+        name: string;
+        color: "black" | "red" | "green" | "yellow" | "blue" | "magenta" | "cyan" | "white" | "gray" | "grey" | "blackBright" | "redBright" | "greenBright" | "yellowBright" | "blueBright" | "magentaBright" | "cyanBright" | "whiteBright" | "bgBlack" | "bgRed" | "bgGreen" | "bgYellow" | "bgBlue" | "bgMagenta" | "bgCyan" | "bgWhite" | "bgGray" | "bgGrey" | "bgBlackBright" | "bgRedBright" | "bgGreenBright" | "bgYellowBright" | "bgBlueBright" | "bgMagentaBright" | "bgCyanBright" | "bgWhiteBright";
+    };
+    errorOnDeprecated: boolean;
+    extraGlobals: ("undefined" | "Array" | "ArrayBuffer" | "Boolean" | "Buffer" | "DataView" | "Date" | "Error" | "EvalError" | "Float32Array" | "Float64Array" | "Function" | "Infinity" | "Int16Array" | "Int32Array" | "Int8Array" | "Intl" | "JSON" | "Map" | "Math" | "NaN" | "Number" | "Object" | "Promise" | "RangeError" | "ReferenceError" | "RegExp" | "Set" | "String" | "Symbol" | "SyntaxError" | "TypeError" | "URIError" | "Uint16Array" | "Uint32Array" | "Uint8Array" | "Uint8ClampedArray" | "WeakMap" | "WeakSet" | "clearImmediate" | "clearInterval" | "clearTimeout" | "decodeURI" | "decodeURIComponent" | "encodeURI" | "encodeURIComponent" | "escape" | "eval" | "global" | "isFinite" | "isNaN" | "parseFloat" | "parseInt" | "setImmediate" | "setInterval" | "setTimeout" | "queueMicrotask" | "unescape" | "gc" | "v8debug" | "console" | "process")[];
+    filter?: string;
+    forceCoverageMatch: string[];
+    globalSetup?: string;
+    globalTeardown?: string;
+    globals: JestConfig.ConfigGlobals;
+    haste: JestConfig.HasteConfig;
+    moduleDirectories: string[];
+    moduleFileExtensions: string[];
+    moduleLoader?: string;
+    moduleNameMapper: [string, string][];
+    modulePathIgnorePatterns: string[];
+    modulePaths?: string[];
+    name: string;
+    prettierPath: string;
+    resetMocks: boolean;
+    resetModules: boolean;
+    resolver?: string;
+    restoreMocks: boolean;
+    rootDir: string;
+    roots: string[];
+    runner: string;
+    setupFiles: string[];
+    skipFilter: boolean;
+    skipNodeResolution?: boolean;
+    snapshotResolver?: string;
+    testMatch: string[];
+    testLocationInResults: boolean;
+    testPathIgnorePatterns: string[];
+    testRegex: (string | RegExp)[];
+    testRunner: string;
+    testURL: string;
+    timers: "real" | "fake";
+    transform: [string, string, Record<string, unknown>][];
+    transformIgnorePatterns: string[];
+    watchPathIgnorePatterns: string[];
+    unmockedModulePathPatterns?: string[];
+};

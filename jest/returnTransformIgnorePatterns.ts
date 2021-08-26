@@ -5,7 +5,7 @@
  * @param {*} ignoreThese array of strings representing third-party libraries in node_modules
  * @returns array with a single string element
  */
-function returnTransformIgnorePatterns(ignoreThese) {
+function returnTransformIgnorePatterns(ignoreThese: string[]) {
     const defaultIgnore = [
         'react-native',
         '@react-native-community',

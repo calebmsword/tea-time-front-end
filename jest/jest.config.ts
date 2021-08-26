@@ -1,11 +1,11 @@
-  
-import { withEnzyme } from 'jest-expo-enzyme';
-import addConfig from './jest/addConfig'
+import { testOnAndroid } from './projects';
+import { Config } from './types';
 
-module.exports = {
+const config: Config = {
     projects: [
-        addConfig(withEnzyme(require('jest-expo/android/jest-preset')))
+        testOnAndroid,
     ],
+    rootDir: '../',
     collectCoverage: true,
     collectCoverageFrom: [
         '<rootDir>/src/**/*.{ts,tsx,js,jsx}',
@@ -20,3 +20,5 @@ module.exports = {
     //     },
     // },
 };
+
+export default config;

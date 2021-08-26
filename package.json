@@ -6,7 +6,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "test": "jest"
+    "test": "jest --config=jest/jest.config.ts"
   },
   "dependencies": {
     "@react-navigation/native": "^6.0.2",
@@ -18,6 +18,8 @@
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
     "react-native-gesture-handler": "^1.10.3",
+    "react-native-reanimated": "^2.2.0",
+    "react-native-screens": "^3.6.0",
     "react-native-web": "~0.13.12",
     "react-redux": "^7.2.4",
     "redux": "^4.1.1",
@@ -29,7 +31,9 @@
     "@types/jest": "^27.0.1",
     "@types/react": "~16.9.35",
     "@types/react-native": "~0.63.2",
+    "babel-jest": "^27.0.6",
     "enzyme": "^3.11.0",
+    "enzyme-to-json": "^3.6.2",
     "jest": "^26.6.3",
     "jest-expo": "^42.1.0",
     "jest-expo-enzyme": "^1.2.1",

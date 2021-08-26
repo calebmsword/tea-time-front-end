@@ -1,4 +1,5 @@
 import returnTransformIgnorePatterns from './returnTransformIgnorePatterns';
+import { WithEnzymeReturn, Config } from './types';
 
 /**
  * `withEnzyme` comes with a lot of useful configuration to save you time,
@@ -8,14 +9,17 @@ import returnTransformIgnorePatterns from './returnTransformIgnorePatterns';
  * @param {*} config the object returned by `withEnzyme`
  * @returns the same object but with modified properties
  */
-function addConfig(config) {
+function addConfig(config: WithEnzymeReturn) : Config {
+    
+    // see https://github.com/facebook/jest/issues/3613#issuecomment-304894712
+    config.rootDir = '../tea-time-fe/';
 
     // add extra setup file
-    config.setupFilesAfterEnv.push('<rootDir>/jest/setup.js');
+    let x = config.setupFilesAfterEnv;
+    config.setupFilesAfterEnv = x && [...x, '<rootDir>/jest/setup.ts']; // x can be undefined, TypeScript gets mad if we don't account for that
     
-    const s = 'Navigation';
     config.testMatch = [
-        `<rootDir>/src/components/${s}/${s}.test.tsx`,
+        `<rootDir>/src/redux/sagas/sagas.test.ts`,
     ];
 
     config.testPathIgnorePatterns = [
@@ -23,7 +27,7 @@ function addConfig(config) {
 
     // third-party libraries that throw errors
     // see https://jestjs.io/docs/tutorial-react-native#transformignorepatterns-customization
-    const ignoreThese = [
+    const ignoreThese : string[] = [
     ];
     config.transformIgnorePatterns = returnTransformIgnorePatterns(ignoreThese);
 
