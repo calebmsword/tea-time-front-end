@@ -13,3 +13,7 @@ web-build/
 .DS_Store
 
 jest/coverage/
+coverage/
+
+# do not have license to distribute publicly
+assets/tea-time-logo-cropped.jpg
