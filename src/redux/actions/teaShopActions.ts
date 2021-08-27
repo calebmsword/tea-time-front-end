@@ -1,4 +1,5 @@
-import { TeaShop, TeaShopActionTypes } from '../types';
+import { TeaShopActionTypes } from '../types';
+import { TeaShop } from '../../entities';
 
 export const getAllTeaShops = () => ({
     type: TeaShopActionTypes.GET_ALL_TEASHOPS,

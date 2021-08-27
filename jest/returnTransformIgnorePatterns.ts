@@ -1,6 +1,6 @@
 /**
  * Returns an array with a single string that tells Babel to ignore uncompiled
- * third-party React Native libraries.
+ * third-party React Native libraries. See see https://jestjs.io/docs/tutorial-react-native#transformignorepatterns-customization.
  *
  * @param {*} ignoreThese array of strings representing third-party libraries in node_modules
  * @returns array with a single string element

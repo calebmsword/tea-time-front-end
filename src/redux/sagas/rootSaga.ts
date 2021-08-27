@@ -1,5 +1,5 @@
 import { all, fork } from 'redux-saga/effects';
-import watchTeaShopsSaga from './getTeaShopSagas/getTeaShopSagas';
+import watchTeaShopsSaga from './getTeaShopsSagas/getTeaShopsSagas';
 
 function* rootSaga() {
     yield all([

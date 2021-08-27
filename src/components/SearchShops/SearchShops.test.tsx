@@ -4,14 +4,14 @@ import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
 import { State, TeaShopsState, TeaShop, Address } from '../../entities';
-import { Invokable } from './SearchShops.types';
+import { Invokable } from '../../entities';
 
 import SearchShops from './SearchShops.component';
 
 let wrapper:ReactWrapper;
 
-const addressA = new Address('streetA', 'stateA', 'areaCodeA');
-const addressB = new Address('streetB', 'stateB', 'areaCodeB');
+const addressA = new Address('streetA', 'cityA', 'stateA', 'areaCodeA');
+const addressB = new Address('streetB', 'cityB', 'stateB', 'areaCodeB');
 const teaShopA = new TeaShop('0', 'Tea Shop A', addressA);
 const teaShopB = new TeaShop('1', 'Tea Shop B', addressB);
 
@@ -44,11 +44,14 @@ describe('testing SearchShops', () => {
     const arr = [ 
         [teaShopA.name, teaShopA.name],
         [teaShopB.name, teaShopB.name],
+        [teaShopA.name.toUpperCase(), teaShopA.name],
         [teaShopA.name.substring(2, teaShopA.name.length), teaShopA.name],
         [teaShopA.address.streetName, teaShopA.name],
+        [teaShopA.address.city, teaShopA.name],
         [teaShopA.address.state, teaShopA.name],
         [teaShopA.address.areaCode, teaShopA.name],
         [teaShopB.address.streetName, teaShopB.name],
+        [teaShopB.address.city, teaShopB.name],
         [teaShopB.address.state, teaShopB.name],
         [teaShopB.address.areaCode, teaShopB.name],
     ];
@@ -67,7 +70,7 @@ describe('testing SearchShops', () => {
 
     });
 
-    it('displays nothing if we type something irrelevant in the search bar', () => {
+    it('FlatList displays nothing if we type something irrelevant in the search bar', () => {
         const searchBar = wrapper.find(TextInput);
         (searchBar as Invokable).invoke('onChangeText')('why r u gay? who says im gay? u r gay');
 
@@ -78,6 +81,18 @@ describe('testing SearchShops', () => {
             .props().data.length
         ).toBe(0);
     });
+
+    it('FlatList displays nothing if we have only whitespace in search bar', () => {
+        const searchBar = wrapper.find(TextInput);
+        (searchBar as Invokable).invoke('onChangeText')('  \n \n \t    ');
+
+        expect(
+            mount(
+                wrapper.find(FlatList).getElement()
+            )
+            .props().data.length
+        ).toBe(0);
+    })
 
     it('does not contain anything in FlatList if tea shops are loading', () => {
         wrapper = mount( 

@@ -8,6 +8,7 @@ const inititalState : TeaShopState = {
             id: 'skeet',
             address: {
                 streetName: 'bleh',
+                city: "blh",
                 areaCode: 'blah',
                 state: 'bluh',
             }
@@ -17,6 +18,7 @@ const inititalState : TeaShopState = {
             id: 'yeet',
             address: {
                 streetName: 'blih',
+                city: "blaskljdfha",
                 areaCode: 'bloh',
                 state: 'blyh',
             }

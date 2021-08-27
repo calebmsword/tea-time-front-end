@@ -9,6 +9,7 @@ const config: Config = {
     collectCoverage: true,
     collectCoverageFrom: [
         '<rootDir>/src/**/*.{ts,tsx,js,jsx}',
+        '<rootDir>/src/**/*test.{ts,tsx,js,jsx}',
         '!<rootDir>/src/assets/**/*',
         '!<rootDir>/src/types.ts',
         '!<rootDir>/src/entities/*',

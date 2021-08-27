@@ -35,7 +35,7 @@ const Navigation:React.FC = () => {
     
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName='search'>
+            <Stack.Navigator screenOptions={{headerShown: false,}} initialRouteName='search'>
                 <Stack.Screen {...searchBarScreenProps} />
                 <Stack.Screen {...shopViewScreenProps} />
                 <Stack.Screen {...addShopScreenProps} />
