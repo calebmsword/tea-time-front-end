@@ -81,3 +81,5 @@ export interface Mockable {
 }
 
 export const testError = new Error('test Error');
+
+export const mockGetAllShopsFromAPI = {data: {teaShops: [testTeaShop]}};

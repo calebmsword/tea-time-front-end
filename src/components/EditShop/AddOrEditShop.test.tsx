@@ -1,8 +1,9 @@
 import { shallow, ShallowWrapper } from "enzyme";
 import { TextInput, Text } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { Invokable, TeaShop } from "../../entities";
+import { Invokable } from "../../entities";
 import { HasPlaceholder } from "./AddOrEditShop.types";
+import { testTeaShop } from '../../entities';
 
 import AddOrEditShop from './AddOrEditShop.component';
 
@@ -20,8 +21,6 @@ jest.mock('react-redux', () => ({
     useDispatch: () => mockDispatch,
 }));
 
-const testTeaShop = new TeaShop('id', 'name', 'street', 'city', 'state', 'areaCode');
-
 describe('testing AddOrEditShop in "edit" mode', () => {
     beforeEach( () => {
         wrapper = shallow(<AddOrEditShop mode='edit' teaShop={testTeaShop}/>);
@@ -38,8 +37,8 @@ describe('testing AddOrEditShop in "edit" mode', () => {
             .find(Text)
             .findWhere( (node:ShallowWrapper) => 
                 node.shallow().text().includes('update')
-            );
-        (updateBtn as Invokable).invoke('onPress')();
+            ) as Invokable;
+        updateBtn.invoke('onPress')();
         expect(mockDispatch).toHaveBeenCalled();
         expect(mockGoBack).toHaveBeenCalled();
     });
@@ -65,8 +64,8 @@ describe('testing AddOrEditShop in "edit" mode', () => {
             .find(Text)
             .findWhere( (node:ShallowWrapper) => 
                 node.shallow().text().toLowerCase().includes('delete')
-            );
-        (deleteBtn as Invokable).invoke('onPress')();
+            ) as Invokable;
+        deleteBtn.invoke('onPress')();
         expect(mockDispatch).toHaveBeenCalled();
     });
 });
