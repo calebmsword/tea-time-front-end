@@ -10,7 +10,10 @@ const ShopInList : React.FC<Props> = ( {teaShop} ) => {
     return (
             <TouchableHighlight
                 style={styles.container} 
-                onPress={() => navigation.navigate('shop', { teaShop })}
+                onPress={() => navigation.navigate('shop', { 
+                    mode: 'edit', 
+                    teaShop,
+                })}
             >
                 <Text>{teaShop.name}</Text>
             </TouchableHighlight>

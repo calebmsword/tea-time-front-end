@@ -70,7 +70,7 @@ describe.each([
 
     const arr = [
         [ mode === 'edit' ? testTeaShop.name : '' ],
-        [ mode === 'edit' ? testTeaShop.address.streetName : '' ],
+        [ mode === 'edit' ? testTeaShop.address.street : '' ],
         [ mode === 'edit' ? testTeaShop.address.city : '' ],
         [ mode === 'edit' ? testTeaShop.address.state : '' ],
         [ mode === 'edit' ? testTeaShop.address.areaCode : '' ],
@@ -102,8 +102,6 @@ describe.each([
         } else {
             expect(mode).toBe('add');
         }
-
-        
     });
 
 });

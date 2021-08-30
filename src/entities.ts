@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios';
 
 export interface IAddress {
-	streetName: string;
+	street: string;
 	state: string;
 	city: string;
 	areaCode: string;
@@ -14,13 +14,13 @@ export interface ITeaShop {
 }
 
 export class Address implements IAddress {
-	streetName: string;
+	street: string;
 	city: string;
 	state: string;
 	areaCode: string;
 
-	constructor(streetName: string, city: string, state: string, areaCode: string) {
-		this.streetName = streetName;
+	constructor(street: string, city: string, state: string, areaCode: string) {
+		this.street = street;
 		this.city = city;
 		this.state = state;
 		this.areaCode = areaCode;
@@ -35,12 +35,12 @@ export class TeaShop implements ITeaShop {
 	constructor(
 		id: string,
 		name: string,
-		...args: [streetName: string, city: string, state: string, areaCode: string] | [Address]
+		...args: [street: string, city: string, state: string, areaCode: string] | [Address]
 	) {
 		this.id = id;
 		this.name = name;
 		if (typeof args[0] === 'string') {
-			this.address = new Address(...args as [streetName: string, city: string, state: string, areaCode: string]);
+			this.address = new Address(...args as [street: string, city: string, state: string, areaCode: string]);
 		} else {
 			this.address = args[0];
 		}

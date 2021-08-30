@@ -4,7 +4,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Props from './AddOrEditShop.types'
 import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
-import { addTeaShop, getAllTeaShops } from '../../redux/actions/teaShopActions';
+import { addTeaShop } from '../../redux/actions/teaShopActions';
 import { TeaShopToAdd } from '../../entities';
 import MetaDataView from '../MetaDataView/MetaDataView.component';
 
@@ -14,7 +14,7 @@ const AddOrEditShop : React.FC<Props> = ( {route} ) => {
     AddOrEditShop.displayName = `${mode}shop`;
 
     const [teaShopName, setTeaShopName] = useState(teaShop ? teaShop.name : '');
-    const [teaShopStreetName, setTeaShopStreetName] = useState(teaShop ? teaShop.address.streetName : '');
+    const [teaShopStreetName, setTeaShopStreetName] = useState(teaShop ? teaShop.address.street : '');
     const [teaShopCity, setTeaShopCity] = useState(teaShop ? teaShop.address.city : '');
     const [teaShopState, setTeaShopState] = useState(teaShop ? teaShop.address.state : '');
     const [teaShopAreaCode, setTeaShopAreaCode] = useState(teaShop ? teaShop.address.areaCode : '');
@@ -26,6 +26,10 @@ const AddOrEditShop : React.FC<Props> = ( {route} ) => {
         if (mode === 'add') {
             const teaShopToAdd = new TeaShopToAdd(teaShopName, teaShopStreetName, teaShopCity, teaShopState, teaShopAreaCode);
             dispatch(addTeaShop(teaShopToAdd));
+            navigation.navigate('shop', {
+                mode: 'edit',
+                teaShop: teaShopToAdd,
+            });
         } else if (mode === 'edit' ) {
             dispatch('hm...');
         }
