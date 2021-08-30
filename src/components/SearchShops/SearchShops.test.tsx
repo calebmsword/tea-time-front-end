@@ -3,9 +3,11 @@ import { Text, TextInput, FlatList } from 'react-native';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
-import { State, TeaShopsState, TeaShop, Address } from '../../entities';
+import { State, TeaShopsState, TeaShop, Address, testTeaShop } from '../../entities';
 import { Invokable } from '../../entities';
 
+import { byHavingPropertyWhoseValueIncludes } from "./SearchShops.helpers";
+import Header from '../Header/Header.component';
 import SearchShops from './SearchShops.component';
 
 let wrapper:ReactWrapper;
@@ -25,10 +27,11 @@ const mockStoreError= configureStore([createSagaMiddleware()])(testStateError);
 
 const mockNavigate = jest.fn();
 jest.mock('@react-navigation/native', () => ({
-    useNavigation: () => ({ navigate: mockNavigate })
+    useNavigation: () => ({ navigate: mockNavigate }),
 }));
 
 describe('testing SearchShops', () => {
+    
     beforeEach( () => {
         wrapper = mount( 
             <Provider store={mockStore} >
@@ -36,7 +39,15 @@ describe('testing SearchShops', () => {
             </Provider>
         );
     });
+
+    afterEach( () => {
+        mockNavigate.mockReset();
+    })
     
+    it('displays a header', () => {
+        expect(wrapper.find(Header).find.length).toBeGreaterThan(0);
+    })
+
     it('has a text input box', () => {
         expect(wrapper.find(TextInput).length).toBeGreaterThan(0);
     });
@@ -45,7 +56,7 @@ describe('testing SearchShops', () => {
         [teaShopA.name, teaShopA.name],
         [teaShopB.name, teaShopB.name],
         [teaShopA.name.toUpperCase(), teaShopA.name],
-        [teaShopA.name.substring(2, teaShopA.name.length), teaShopA.name],
+        [teaShopA.name.substring(4, teaShopA.name.length), teaShopA.name],
         [teaShopA.address.streetName, teaShopA.name],
         [teaShopA.address.city, teaShopA.name],
         [teaShopA.address.state, teaShopA.name],
@@ -116,4 +127,43 @@ describe('testing SearchShops', () => {
         );
         expect(wrapper.find(FlatList).length).toBe(0);
     });
+
+    it('has an add new shop button that navigates to new screen when pressed', () => {
+        const addShopBtns = wrapper
+            .find({testID: 'add-shop-btn'})
+            .findWhere( (node:ReactWrapper) => 
+                node.props().hasOwnProperty('onPress') 
+            );
+        const addShopBtn = addShopBtns.length ? addShopBtns.last() : addShopBtns;
+        (addShopBtn as Invokable).invoke('onPress')();
+        expect(mockNavigate).toHaveBeenCalled();
+    });
+
+});
+
+describe('testing SeachShops.helpers', () => {
+
+    it('returns true if the tea shop has a property with the name given', () => {
+        expect(
+            byHavingPropertyWhoseValueIncludes(testTeaShop.name)(testTeaShop)
+        )
+        .toBeTruthy();
+    });
+
+    it('if tea shop has id of numerical 10 but parameter is the string "10", we still return false instead of true', () => {
+        expect(
+            byHavingPropertyWhoseValueIncludes('10')({
+                name: 't',
+                id: 10 as unknown as string,
+                address: {
+                    streetName: 'hm',
+                    city: 'hm',
+                    state: 'hm',
+                    areaCode: 'hm',
+                },
+            })
+        )
+        .toBeFalsy();
+    });
+
 });

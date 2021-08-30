@@ -14,26 +14,21 @@ function addConfig(config: WithEnzymeReturn) : Config {
     // see https://github.com/facebook/jest/issues/3613#issuecomment-304894712
     config.rootDir = '../tea-time-fe/';
 
-    // add extra setup file
     let x = config.setupFilesAfterEnv;
-    config.setupFilesAfterEnv = x && [...x, '<rootDir>/jest/setup.ts']; // x can be undefined, TypeScript gets mad if we don't account for that
+    config.setupFilesAfterEnv = x && [...x, '<rootDir>/jest/setup.ts']; // x can be undefined; TypeScript gets mad if we don't account for that
     
-    config.testMatch = [
-        `<rootDir>/src/redux/sagas/getTeaShopsSagas/getTeaShopsSagas.test.ts`,
-    ];
+    // config.testMatch = [
+    //     `<rootDir>/src/components/AddOrEditShop/AddOrEditShop.test.tsx`,
+    // ];
 
     config.testPathIgnorePatterns = [
+        '<rootDir>/src/redux/',
     ];
 
     config.transformIgnorePatterns = returnTransformIgnorePatterns([
         'react-native-vector-icons',
     ]);
-
-    config.displayName = {
-        name: 'components',
-        color: 'blue',
-    };
-
+    
     return config;
 }
 

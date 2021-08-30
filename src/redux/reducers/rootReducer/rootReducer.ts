@@ -1,4 +1,4 @@
-import teaShopReducer from './teaShopReducer/teaShopReducer'
+import teaShopReducer from '../teaShopReducer/teaShopReducer'
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({

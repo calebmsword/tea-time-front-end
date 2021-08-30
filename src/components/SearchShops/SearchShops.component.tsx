@@ -2,25 +2,29 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { View, Text, TextInput, FlatList, TouchableOpacity, Image } from 'react-native';
 import { getAllTeaShops } from '../../redux/actions/teaShopActions';
-import { State } from '../../redux/reducers/rootReducer';
+import { State } from '../../redux/reducers/rootReducer/rootReducer';
+import ErrorSearchedShops from '../ErrorSearchedShops/ErrorSearchedShops.component';
 import LoadingSearchedShops from '../LoadingSearchedShops/LoadingSearchedShops.component'
 import ShopInList from '../ShopInList/ShopInList.component';
 import { ObjWithItemKey } from './SearchShops.types';
 import { byHavingPropertyWhoseValueIncludes } from './SearchShops.helpers';
 import styles from './SearchShops.styles'
 import Header from '../Header/Header.component'
+import { onComponentDidMountOnly } from '../../entities';
+import { useNavigation } from '@react-navigation/native';
 
-const componentDidMount: [] = [];
 
 const SearchShops : React.FC = () => {
-    const [searchBarText, setSearchBarText] = useState('MaTt');
+    const [searchBarText, setSearchBarText] = useState('');
     const dispatch = useDispatch();
-    const { loading, teaShops, error } = useSelector( (state: State) => state.teaShops);
+    const { getAllTeaShopsLoading, teaShops, getAllTeaShopsError } = useSelector( (state: State) => state.teaShops);
+
+    const navigation = useNavigation<any>();
 
     useEffect( () => {
             dispatch(getAllTeaShops());
         }, 
-        componentDidMount
+        onComponentDidMountOnly
     );
 
     return (
@@ -29,18 +33,15 @@ const SearchShops : React.FC = () => {
             <View style={{ flexDirection: 'row', }}>
                 <TextInput style={styles.searchBar} value={searchBarText} onChangeText={setSearchBarText} />
                 {/* <Image style={{width: 100, height: 40, }} resizeMode='contain' source={require('../../../assets/imblackyall.png')} /> */}
-                <TouchableOpacity style={styles.addShopBtn} onPress={ () => {/**no-op*/}}>
+                <TouchableOpacity testID='add-shop-btn' style={styles.addShopBtn} onPress={ () => navigation.navigate('add', {mode: 'add'})}>
                     <Text style={styles.addShopBtnText}>ADD NEW SHOP</Text>
                 </TouchableOpacity>
             </View>
-            <LoadingSearchedShops loading={loading}/>
-            { error ? (
-                <Text>Hm... something went wrong. Our diagnostics say: {error.message}</Text>
-            ) : (
+            <LoadingSearchedShops loading={getAllTeaShopsLoading}/>
+            { getAllTeaShopsError ? <ErrorSearchedShops error={getAllTeaShopsError} /> : (
                     <FlatList 
                         data={teaShops.filter(byHavingPropertyWhoseValueIncludes(searchBarText))}
                         renderItem={(item:ObjWithItemKey) => <ShopInList teaShop={item.item} />} 
-                        keyExtractor={item => item.id}
                     />
             )}
         </View>

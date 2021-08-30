@@ -3,8 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { GestureDirection } from '@react-navigation/stack/lib/typescript/src/types';
 import SearchShops from '../SearchShops/SearchShops.component';
-import ShopView from '../ShopView/ShopView.component';
-import AddShop from '../AddShop/AddShop.component';
+import AddOrEditShop from '../AddOrEditShop/AddOrEditShop.component';
 
 const Stack = createStackNavigator();
 const Navigation:React.FC = () => {
@@ -17,17 +16,17 @@ const Navigation:React.FC = () => {
         },
     };
 
-    const shopViewScreenProps = {
+    const addShopScreenProps = {
         name: 'shop',
-        component: ShopView,
+        component: AddOrEditShop,
         options: {
             gestureDirection: 'horizontal' as GestureDirection,
         },
     };
 
-    const addShopScreenProps = {
+    const updateShopScreenProps = {
         name: 'add',
-        component: AddShop,
+        component: AddOrEditShop,
         options: {
             gestureDirection: 'horizontal' as GestureDirection,
         },
@@ -37,8 +36,8 @@ const Navigation:React.FC = () => {
         <NavigationContainer>
             <Stack.Navigator screenOptions={{headerShown: false,}} initialRouteName='search'>
                 <Stack.Screen {...searchBarScreenProps} />
-                <Stack.Screen {...shopViewScreenProps} />
                 <Stack.Screen {...addShopScreenProps} />
+                <Stack.Screen {...updateShopScreenProps} />
             </Stack.Navigator>
         </NavigationContainer>
     )

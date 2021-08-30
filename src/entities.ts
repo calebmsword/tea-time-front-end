@@ -1,3 +1,5 @@
+import { AxiosResponse } from 'axios';
+
 export interface IAddress {
 	streetName: string;
 	state: string;
@@ -6,7 +8,7 @@ export interface IAddress {
 }
 
 export interface ITeaShop {
-	id: string;
+	id?: string;
 	name: string;
 	address: IAddress;
 }
@@ -45,18 +47,43 @@ export class TeaShop implements ITeaShop {
 	}
 }
 
+export class TeaShopToAdd implements ITeaShop {
+	name: string;
+	address: IAddress;
+
+	constructor(
+		name: string,
+		...args: [streetName: string, city: string, state: string, areaCode: string] | [Address]
+	) {
+		this.name = name;
+		if (typeof args[0] === 'string') {
+			this.address = new Address(...args as [streetName: string, city: string, state: string, areaCode: string]);
+		} else {
+			this.address = args[0];
+		}
+	}
+}
+
 export const testTeaShop = new TeaShop('id', 'name', 'streetname', 'city', 'state', 'areaCode');
+
+export const testTeaShopToAdd = new TeaShopToAdd('name', 'streetname', 'city', 'state', 'areaCode');
 
 export class TeaShopsState {
 	teaShops: TeaShop[];
-	loading: boolean;
-	error: Error | null;
-	constructor(teaShops: TeaShop[], loading: boolean = false, error: Error | null = null) {
+	getAllTeaShopsLoading: boolean;
+	addTeaShopLoading: boolean;
+	getAllTeaShopsError: Error | null;
+	addTeaShopError: Error | null;
+	constructor(teaShops: TeaShop[], getAllTeaShopsLoading: boolean = false,  addTeaShopLoading: boolean = false, getAllTeaShopsError: Error | null = null, addTeaShopError: Error | null = null) {
 		this.teaShops = teaShops;
-		this.loading = loading;
-		this.error = error;
+		this.getAllTeaShopsLoading = getAllTeaShopsLoading;
+		this.addTeaShopLoading = addTeaShopLoading;
+		this.getAllTeaShopsError = getAllTeaShopsError;
+		this.addTeaShopError = addTeaShopError;
 	}
 }
+
+export const initialTeaShopsState = new TeaShopsState([testTeaShop]);
 
 export class State {
 	teaShops: TeaShopsState;
@@ -80,6 +107,10 @@ export interface Mockable {
     mockReturnedValueOnce: any,
 }
 
-export const testError = new Error('test Error');
+export const testError = new Error('test error');
 
 export const mockGetAllShopsFromAPI = {data: {teaShops: [testTeaShop]}};
+
+export const onComponentDidMountOnly: [] = [];
+
+export const testState = new State(initialTeaShopsState);

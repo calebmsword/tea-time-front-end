@@ -13,10 +13,12 @@ export function* getAllTeaShopsSaga() {
     }
 }
 
-function* watchTeaShopsSaga() {
+function* watchGetTeaShopsSaga() {
     yield all([
         takeLatest(TeaShopActionTypes.GET_ALL_TEASHOPS, getAllTeaShopsSaga)
     ]);
 }
 
-export default watchTeaShopsSaga;
+export type getAllTeaShopsSagaReturnType = ReturnType< typeof getAllTeaShopsSaga>;
+export type watchTeaShopsSagaReturnType = ReturnType< typeof watchGetTeaShopsSaga>;
+export default watchGetTeaShopsSaga;

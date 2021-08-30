@@ -5,7 +5,7 @@ import LoadingSearchedShops from "./LoadingSearchedShops.component";
 let wrapper:ShallowWrapper;
 
 describe('testing LoadingSearchedShops', () => {
-    it('displays nothing if nothing is loading', () => {
+    it('displays nothing if Tea Shops are loading', () => {
         wrapper = shallow( <LoadingSearchedShops loading={false} />);
         expect(wrapper.children().length).toBe(0);
     });
