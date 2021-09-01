@@ -1,9 +1,9 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
+import { GestureDirection } from '@react-navigation/stack/lib/typescript/src/types';
 import SearchShops from '../SearchShops/SearchShops.component';
-import ShopView from '../ShopView/ShopView.component';
-import AddShop from '../AddShop/AddShop.component';
+import AddOrEditShop from '../AddOrEditShop/AddOrEditShop.component';
 
 const Stack = createStackNavigator();
 const Navigation:React.FC = () => {
@@ -11,33 +11,33 @@ const Navigation:React.FC = () => {
     const searchBarScreenProps = {
         name: 'search',
         component: SearchShops,
-        // options: {
-        //     gestureDirection: 'horizontal',
-        // },
-    };
-
-    const shopViewScreenProps = {
-        name: 'shop',
-        component: ShopView,
-        // options: {
-        //     gestureDirection: 'horizontal',
-        // },
+        options: {
+            gestureDirection: 'horizontal' as GestureDirection,
+        },
     };
 
     const addShopScreenProps = {
+        name: 'shop',
+        component: AddOrEditShop,
+        options: {
+            gestureDirection: 'horizontal' as GestureDirection,
+        },
+    };
+
+    const updateShopScreenProps = {
         name: 'add',
-        component: AddShop,
-        // options: {
-        //     gestureDirection: 'horizontal',
-        // },
+        component: AddOrEditShop,
+        options: {
+            gestureDirection: 'horizontal' as GestureDirection,
+        },
     };
     
     return (
         <NavigationContainer>
-            <Stack.Navigator>
+            <Stack.Navigator screenOptions={{headerShown: false,}} initialRouteName='search'>
                 <Stack.Screen {...searchBarScreenProps} />
-                <Stack.Screen {...shopViewScreenProps} />
                 <Stack.Screen {...addShopScreenProps} />
+                <Stack.Screen {...updateShopScreenProps} />
             </Stack.Navigator>
         </NavigationContainer>
     )
