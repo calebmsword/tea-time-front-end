@@ -1,6 +1,6 @@
 import watchAddTeaShopSaga, { addTeaShopSaga, addTeaShopSagaReturnType, watchAddTeaShopSagaReturnType } from "./addTeaShopSagas";
-import { addTeaShopSucceeded, addTeaShopFailed } from "../../actions/teaShopActions";
-import { call, put, all, takeLatest } from 'redux-saga/effects';
+import { addTeaShop, addTeaShopSucceeded, addTeaShopFailed, getAllTeaShops } from "../../actions/teaShopActions";
+import { call, put, take } from 'redux-saga/effects';
 import { endpoint, testTeaShopToAdd, testError } from '../../../entities';
 import { TeaShopActionTypes } from "../../types";
 import axios from 'axios';
@@ -28,6 +28,13 @@ describe('testing addTeaShopSaga', () => {
             put(addTeaShopSucceeded())
         );
 
+        expect(
+            generator.next().value
+        )
+        .toEqual(
+            put(getAllTeaShops())
+        );
+
     });
 
     it('handles errors properly', () => {
@@ -45,7 +52,7 @@ describe('testing addTeaShopSaga', () => {
 describe('testing watchAddTeaShopSaga', () => {
     
     beforeEach( () => {
-        generator = watchAddTeaShopSaga(testTeaShopToAdd);
+        generator = watchAddTeaShopSaga();
     }); 
 
     it('properly watches for the saga', () => {
@@ -53,10 +60,16 @@ describe('testing watchAddTeaShopSaga', () => {
             generator.next().value
         )
         .toMatchObject(
-            all([
-                takeLatest(TeaShopActionTypes.ADD_TEASHOP, addTeaShopSaga, testTeaShopToAdd)
-            ])
+            take(TeaShopActionTypes.ADD_TEASHOP)
         );
+
+        expect(
+            generator.next(addTeaShop(testTeaShopToAdd)).value
+        )
+        .toMatchObject(
+            call(addTeaShopSaga, addTeaShop(testTeaShopToAdd).payload)
+        );
+
     });
 
 });

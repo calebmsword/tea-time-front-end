@@ -29,12 +29,34 @@ export const addTeaShopFailed = (payload: Error) => ({
     payload,
 });
 
-// export const updateTeaShop = () => ({
-//     type: 'UPDATE_TEASHOP',
-// });
+export const editTeaShop = (payload: ITeaShop) => ({
+    type: TeaShopActionTypes.EDIT_TEASHOP,
+    payload,
+});
 
-// export const deleteTeaShop = () => ({
-//     type: 'DELETE_TEASHOP',
-// });
+export const editTeaShopSucceeded = () => ({
+    type: TeaShopActionTypes.EDIT_TEASHOP_SUCCESS,
+});
 
+export const editTeaShopFailed = (payload: Error) => ({
+    type: TeaShopActionTypes.EDIT_TEASHOP_FAILURE,
+    payload,
+});
+
+export const deleteTeaShop = (payload: string) => ({
+    type: TeaShopActionTypes.DELETE_TEASHOP,
+    payload,
+});
+
+export const deleteTeaShopSucceeded = () => ({
+    type: TeaShopActionTypes.DELETE_TEASHOP_SUCCESS,
+});
+
+export const deleteTeaShopFailed = (payload: Error) => ({
+    type: TeaShopActionTypes.DELETE_TEASHOP_FAILURE,
+    payload,
+})
+
+export type deleteTeaShopReturn = ReturnType<typeof deleteTeaShop>;
 export type addTeaShopReturn = ReturnType<typeof addTeaShop>;
+export type editTeaShopReturn = ReturnType<typeof editTeaShop>;

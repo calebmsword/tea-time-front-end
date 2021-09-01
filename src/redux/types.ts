@@ -8,6 +8,11 @@ export enum TeaShopActionTypes {
     ADD_TEASHOP_SUCCESS = 'ADD_TEASHOP_SUCCESS',
     ADD_TEASHOP_FAILURE = 'ADD_TEASHOP_FAILURE',
     EDIT_TEASHOP = 'EDIT_TEASHOP',
+    EDIT_TEASHOP_SUCCESS = 'EDIT_TEASHOP_SUCCESS',
+    EDIT_TEASHOP_FAILURE = 'EDIT_TEASHOP_FAILURE',
+    DELETE_TEASHOP = 'DELETE_TEASHOP',
+    DELETE_TEASHOP_SUCCESS = 'DELETE_TEASHOP_SUCCESS',
+    DELETE_TEASHOP_FAILURE = 'DELETE_TEASHOP_FAILURE',
 }
 
 export interface TeaShopAction {
@@ -15,10 +20,12 @@ export interface TeaShopAction {
     payload?: any,
 }
 
-export interface TeaShopState {
+export interface ITeaShopState {
     getAllTeaShopsLoading: boolean,
-    addTeaShopLoading: boolean,
+    addOrEditTeaShopLoading: boolean,
     teaShops: ITeaShop[] | [],
     getAllTeaShopsError: Error | null,
-    addTeaShopError: Error | null,
+    addOrEditTeaShopError: Error | null,
+    deleteTeaShopLoading: boolean,
+    deleteTeaShopError: Error | null,
 }

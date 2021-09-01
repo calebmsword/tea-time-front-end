@@ -3,8 +3,7 @@ import { Text, TextInput, FlatList } from 'react-native';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
-import { State, TeaShopsState, TeaShop, Address, testTeaShop } from '../../entities';
-import { Invokable } from '../../entities';
+import { State, TeaShopsState, TeaShop, Address, testTeaShop, Invokable, testError } from '../../entities';
 
 import { byHavingPropertyWhoseValueIncludes } from "./SearchShops.helpers";
 import Header from '../Header/Header.component';
@@ -19,11 +18,15 @@ const teaShopB = new TeaShop('1', 'Tea Shop B', addressB);
 
 const testState = new State( new TeaShopsState([teaShopA, teaShopB]) );
 const testStateLoading = new State( new TeaShopsState([teaShopA, teaShopB], true));
-const testStateError = new State( new TeaShopsState([teaShopA, teaShopB], false, new Error('message')));
+const testStateGetAllTeaShopsError = new State( new TeaShopsState([teaShopA, teaShopB], false, false, false, testError));
+const testStateDeleteTeaShopError = new State( new TeaShopsState([teaShopA, teaShopB], false, false, false, null, null, testError));
+
 
 const mockStore = configureStore([createSagaMiddleware()])(testState);
 const mockStoreLoading = configureStore([createSagaMiddleware()])(testStateLoading);
-const mockStoreError= configureStore([createSagaMiddleware()])(testStateError);
+const mockStoreGetAllTeaShopsError = configureStore([createSagaMiddleware()])(testStateGetAllTeaShopsError);
+const mockStoreDeleteTeaShopError = configureStore([createSagaMiddleware()])(testStateDeleteTeaShopError);
+
 
 const mockNavigate = jest.fn();
 jest.mock('@react-navigation/native', () => ({
@@ -57,11 +60,11 @@ describe('testing SearchShops', () => {
         [teaShopB.name, teaShopB.name],
         [teaShopA.name.toUpperCase(), teaShopA.name],
         [teaShopA.name.substring(4, teaShopA.name.length), teaShopA.name],
-        [teaShopA.address.streetName, teaShopA.name],
+        [teaShopA.address.street, teaShopA.name],
         [teaShopA.address.city, teaShopA.name],
         [teaShopA.address.state, teaShopA.name],
         [teaShopA.address.areaCode, teaShopA.name],
-        [teaShopB.address.streetName, teaShopB.name],
+        [teaShopB.address.street, teaShopB.name],
         [teaShopB.address.city, teaShopB.name],
         [teaShopB.address.state, teaShopB.name],
         [teaShopB.address.areaCode, teaShopB.name],
@@ -119,12 +122,16 @@ describe('testing SearchShops', () => {
         ).toBe(0);
     });
 
-    it('does not display FlatList if we had an error', () => {
+    it.each([
+        'getting all shops',
+        'deleting a shop',
+    ])('does not display FlatList if we had an error after %s', (str) => {
         wrapper = mount( 
-            <Provider store={mockStoreError}>
+            <Provider store={ str === 'getting all shops' ? mockStoreGetAllTeaShopsError : mockStoreDeleteTeaShopError} >
                 <SearchShops />
             </Provider>
         );
+        
         expect(wrapper.find(FlatList).length).toBe(0);
     });
 
@@ -141,7 +148,7 @@ describe('testing SearchShops', () => {
 
 });
 
-describe('testing SeachShops.helpers', () => {
+describe('testing byHavingPropertyWhoseValueIncludes', () => {
 
     it('returns true if the tea shop has a property with the name given', () => {
         expect(
@@ -150,13 +157,13 @@ describe('testing SeachShops.helpers', () => {
         .toBeTruthy();
     });
 
-    it('if tea shop has id of numerical 10 but parameter is the string "10", we still return false instead of true', () => {
+    it('if tea shop has id of numerical 10 but parameter is the string "10", byHavingPropertyWhoseValueIncludes("10")(...) returns false', () => {
         expect(
             byHavingPropertyWhoseValueIncludes('10')({
                 name: 't',
                 id: 10 as unknown as string,
                 address: {
-                    streetName: 'hm',
+                    street: 'hm',
                     city: 'hm',
                     state: 'hm',
                     areaCode: 'hm',

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { View, Text, TextInput, FlatList, TouchableOpacity, Image } from 'react-native';
 import { getAllTeaShops } from '../../redux/actions/teaShopActions';
-import { State } from '../../redux/reducers/rootReducer/rootReducer';
 import ErrorSearchedShops from '../ErrorSearchedShops/ErrorSearchedShops.component';
 import LoadingSearchedShops from '../LoadingSearchedShops/LoadingSearchedShops.component'
 import ShopInList from '../ShopInList/ShopInList.component';
@@ -10,14 +9,14 @@ import { ObjWithItemKey } from './SearchShops.types';
 import { byHavingPropertyWhoseValueIncludes } from './SearchShops.helpers';
 import styles from './SearchShops.styles'
 import Header from '../Header/Header.component'
-import { onComponentDidMountOnly } from '../../entities';
+import { onComponentDidMountOnly, ReduxStoreState } from '../../entities';
 import { useNavigation } from '@react-navigation/native';
 
 
 const SearchShops : React.FC = () => {
     const [searchBarText, setSearchBarText] = useState('');
     const dispatch = useDispatch();
-    const { getAllTeaShopsLoading, teaShops, getAllTeaShopsError } = useSelector( (state: State) => state.teaShops);
+    const { getAllTeaShopsLoading, teaShops, getAllTeaShopsError, deleteTeaShopError } = useSelector( (state: ReduxStoreState) => state.teaShops);
 
     const navigation = useNavigation<any>();
 
@@ -26,7 +25,7 @@ const SearchShops : React.FC = () => {
         }, 
         onComponentDidMountOnly
     );
-
+    
     return (
         <View>
             <Header />
@@ -38,7 +37,7 @@ const SearchShops : React.FC = () => {
                 </TouchableOpacity>
             </View>
             <LoadingSearchedShops loading={getAllTeaShopsLoading}/>
-            { getAllTeaShopsError ? <ErrorSearchedShops error={getAllTeaShopsError} /> : (
+            { getAllTeaShopsError || deleteTeaShopError ? <ErrorSearchedShops error={deleteTeaShopError ? deleteTeaShopError : getAllTeaShopsError} /> : (
                     <FlatList 
                         data={teaShops.filter(byHavingPropertyWhoseValueIncludes(searchBarText))}
                         renderItem={(item:ObjWithItemKey) => <ShopInList teaShop={item.item} />} 

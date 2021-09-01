@@ -1,7 +1,6 @@
 import teaShopReducer from "./teaShopReducer";
-import { initialTeaShopsState, testTeaShopToAdd } from "../../../entities";
-import { getAllTeaShops, getAllTeaShopsSucceeded, getAllTeaShopsFailed, addTeaShop, addTeaShopSucceeded, addTeaShopFailed } from '../../actions/teaShopActions';
-import { mockGetAllShopsFromAPI, testError } from '../../../entities';
+import { initialTeaShopsState, testTeaShop, testTeaShopToAdd, mockGetAllShopsFromAPI, testError } from "../../../entities";
+import { getAllTeaShops, getAllTeaShopsSucceeded, getAllTeaShopsFailed, addTeaShop, addTeaShopSucceeded, addTeaShopFailed, editTeaShop, editTeaShopSucceeded, editTeaShopFailed, deleteTeaShop, deleteTeaShopSucceeded, deleteTeaShopFailed } from '../../actions/teaShopActions';
 import { TeaShopActionTypes } from "../../types";
 
 describe('testing teaShopReducer', () => {
@@ -12,7 +11,7 @@ describe('testing teaShopReducer', () => {
         )
         .toMatchObject({
             ...initialTeaShopsState,
-            loading: true,
+            getAllTeaShopsLoading: true,
         });
     });
 
@@ -22,9 +21,9 @@ describe('testing teaShopReducer', () => {
         )
         .toMatchObject({
             ...initialTeaShopsState,
-            loading: false,
+            getAllTeaShopsLoading: false,
             teaShops: [],
-            error: testError,
+            getAllTeaShopsError: testError,
         });
     });
 
@@ -34,9 +33,9 @@ describe('testing teaShopReducer', () => {
         )
         .toMatchObject({
             ...initialTeaShopsState,
-            loading: false,
+            getAllTeaShopsLoading: false,
             teaShops: getAllTeaShopsSucceeded(mockGetAllShopsFromAPI.data.teaShops).payload,
-            error: null,
+            getAllTeaShopsError: null,
         });
     });
 
@@ -46,7 +45,7 @@ describe('testing teaShopReducer', () => {
         )
         .toEqual({
             ...initialTeaShopsState,
-            loading: true,
+            addOrEditTeaShopLoading: true,
         });
     });
 
@@ -56,8 +55,8 @@ describe('testing teaShopReducer', () => {
         )
         .toEqual({
             ...initialTeaShopsState,
-            loading: false,
-            error: null,
+            addOrEditTeaShopLoading: false,
+            addOrEditTeaShopError: null,
         });
     });
 
@@ -67,12 +66,76 @@ describe('testing teaShopReducer', () => {
         )
         .toEqual({
             ...initialTeaShopsState,
-            loading: false,
-            error: testError,
+            addOrEditTeaShopLoading: false,
+            addOrEditTeaShopError: testError,
         });
     });
 
-    it('passing a nonsense action leaves the state unchanged', () => {
+    it(`returns expected state when passed action of type ${editTeaShop(testTeaShopToAdd).type}`, () => {
+        expect(
+            teaShopReducer(undefined, editTeaShop(testTeaShopToAdd))
+        )
+        .toEqual({
+            ...initialTeaShopsState,
+            addOrEditTeaShopLoading: true,
+        });
+    });
+
+    it(`returns expected state when passed action of type ${editTeaShopSucceeded().type}`, () => {
+        expect(
+            teaShopReducer(undefined, editTeaShopSucceeded())
+        )
+        .toEqual({
+            ...initialTeaShopsState,
+            addOrEditTeaShopLoading: false,
+            addOrEditTeaShopError: null,
+        });
+    });
+
+    it(`returns expected state when passed action of type ${editTeaShopFailed(testError).type}`, () => {
+        expect(
+            teaShopReducer(undefined, editTeaShopFailed(testError))
+        )
+        .toEqual({
+            ...initialTeaShopsState,
+            addOrEditTeaShopLoading: false,
+            addOrEditTeaShopError: testError,
+        });
+    });
+
+    it(`returns expected state when passed action of type ${deleteTeaShop(testTeaShop.id).type}`, () => {
+        expect(
+            teaShopReducer(undefined, deleteTeaShop(testTeaShop.id))
+        )
+        .toEqual({
+            ...initialTeaShopsState,
+            deleteTeaShopLoading: true,
+        });
+    });
+
+    it(`returns expected state when passed action of type ${deleteTeaShopSucceeded().type}`, () => {
+        expect(
+            teaShopReducer(undefined, deleteTeaShopSucceeded())
+        )
+        .toEqual({
+            ...initialTeaShopsState,
+            deleteTeaShopLoading: false,
+            deleteTeaShopError: null,
+        });
+    });
+
+    it(`returns expected state when passed action of type ${deleteTeaShopFailed(testError).type}`, () => {
+        expect(
+            teaShopReducer(undefined, deleteTeaShopFailed(testError))
+        )
+        .toEqual({
+            ...initialTeaShopsState,
+            deleteTeaShopLoading: false,
+            deleteTeaShopError: testError,
+        });
+    });
+
+    it('passing a action with unaccounted type leaves the state unchanged', () => {
         expect(
             teaShopReducer(undefined, { 
                 type: 'yeet' as TeaShopActionTypes 
@@ -80,5 +143,7 @@ describe('testing teaShopReducer', () => {
         )
         .toMatchObject(initialTeaShopsState);
     });
+
+    
 
 });

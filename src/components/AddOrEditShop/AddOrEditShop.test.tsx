@@ -1,9 +1,12 @@
 import { mount, ReactWrapper } from "enzyme";
-import { TextInput, TouchableHighlight } from 'react-native';
+import { Text, TextInput, TouchableHighlight, Modal } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { Invokable } from "../../entities";
+import { Invokable, TeaShopsState, State, testError } from "../../entities";
 import { HasValue } from "./AddOrEditShop.types";
 import { testTeaShop } from '../../entities';
+import configureStore from 'redux-mock-store';
+import { Provider } from 'react-redux';
+import createSagaMiddleware from 'redux-saga';
 
 import AddOrEditShop from './AddOrEditShop.component';
 
@@ -20,8 +23,23 @@ jest.mock('@react-navigation/native', () => ({
 
 const mockDispatch = jest.fn();
 jest.mock('react-redux', () => ({
+    ...jest.requireActual('react-redux'),
     useDispatch: () => mockDispatch,
 }));
+
+const configureMockStore = configureStore([createSagaMiddleware()]);
+
+const testState = new State( new TeaShopsState([]) );
+const testStateAddOrEditLoading = new State( new TeaShopsState([], false, true) );
+const testStateDeleteLoading = new State( new TeaShopsState([], false, false, true) );
+const testStateAddOrEditError = new State( new TeaShopsState([], false, false, false, null, testError) );
+const testStateDeleteError = new State( new TeaShopsState([], false, false, false, null, null, testError) );
+
+const mockStore = configureMockStore(testState);
+const mockStoreAddOrEditLoading = configureMockStore(testStateAddOrEditLoading);
+const mockStoreDeleteLoading = configureMockStore(testStateDeleteLoading);
+const mockStoreAddOrEditError = configureMockStore(testStateAddOrEditError);
+const mockStoreDeleteError = configureMockStore(testStateDeleteError);
 
 describe.each([
     'add',
@@ -30,14 +48,16 @@ describe.each([
     
     beforeEach( () => {
         wrapper = mount(
-            <AddOrEditShop 
-                route = {{
-                    params: {
-                        mode: mode,
-                        teaShop: mode === 'edit' ? testTeaShop : undefined,
-                    }
-                }}
-            />
+            <Provider store={mockStore}>
+                <AddOrEditShop 
+                    route = {{
+                        params: {
+                            mode: mode,
+                            teaShop: mode === 'edit' ? testTeaShop : undefined,
+                        }
+                    }}
+                />
+            </Provider>
         );
     });
 
@@ -106,11 +126,99 @@ describe.each([
 
 });
 
-describe('testing when mode is not "add" or "edit"', () => {
+describe('testing AddOrEditShop when state is loading', () => {
+
+    it('displays loading Modal if tea shops are being added or edited', () => {
+
+        wrapper = mount(
+            <Provider store={mockStoreAddOrEditLoading}>
+                <AddOrEditShop 
+                    route = {{
+                        params: {
+                            mode: 'edit',
+                            teaShop: testTeaShop,
+                        }
+                    }}
+                />
+            </Provider>
+        );
+
+        const modal = wrapper.find(Modal);
+        expect(modal.props().visible).toBeTruthy();
+    });
+
+    it.each([
+        'add',
+        'edit',
+    ])('displays loading Modal if tea shops are being deleted in %s mode', (mode) => {
+        wrapper = mount(
+            <Provider store={mockStoreDeleteLoading}>
+                <AddOrEditShop 
+                    route = {{
+                        params: {
+                            mode: '%s',
+                            teaShop: mode === 'edit' ? testTeaShop : undefined,
+                        }
+                    }}
+                />
+            </Provider>
+        );
+
+        const modal = wrapper.find(Modal);
+        expect(modal.props().visible).toBeTruthy();
+    });
+
+});
+
+describe('testing AddOrEditShop when state has errors', () => {
+
+    it.each([
+        ['addOrEdit', 'add'],
+        ['addOrEdit', 'edit'],
+        ['delete', 'add'],
+        ['delete', 'edit'],
+    ])('displays error message if %s error occurs in %s mode', (errorCategory, mode) => {
+        wrapper = mount(
+            <Provider store={errorCategory === 'delete' ? mockStoreDeleteError : mockStoreAddOrEditError}>
+                <AddOrEditShop 
+                    route = {{
+                        params: {
+                            mode: mode,
+                            teaShop: mode === 'edit' ? testTeaShop : undefined,
+                        }
+                    }}
+                />
+            </Provider>
+        );
+        const errorMessageIsShown = wrapper
+            .find(Text)
+            .someWhere( (node:ReactWrapper) => 
+                node.text().includes(testError.message)
+            );
+
+        expect(errorMessageIsShown).toBeTruthy();
+
+    });
+
+});
+
+describe('testing addOrEditShop when mode is not "add" or "edit"', () => {
     
     const mode = 'yeet';
-    beforeEach( () => {
-        wrapper = mount(<AddOrEditShop route={ { params: {mode: mode} } } />);
+
+    beforeEach( () => {    
+        const props = {
+            route: {
+                params: {
+                    mode: mode
+                },
+            }
+        };
+        wrapper = mount(
+            <Provider store={mockStore}>
+                <AddOrEditShop {...props} />
+            </Provider>
+        );
     });
 
     afterEach( () => {

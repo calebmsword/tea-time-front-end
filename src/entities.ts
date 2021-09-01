@@ -1,4 +1,5 @@
-import { AxiosResponse } from 'axios';
+import { ITeaShopState } from './redux/types';
+import { State as GlobalAppState } from './redux/reducers/rootReducer/rootReducer';
 
 export interface IAddress {
 	street: string;
@@ -68,18 +69,30 @@ export const testTeaShop = new TeaShop('id', 'name', 'streetname', 'city', 'stat
 
 export const testTeaShopToAdd = new TeaShopToAdd('name', 'streetname', 'city', 'state', 'areaCode');
 
-export class TeaShopsState {
+export class TeaShopsState implements ITeaShopState {
 	teaShops: TeaShop[];
 	getAllTeaShopsLoading: boolean;
-	addTeaShopLoading: boolean;
+	addOrEditTeaShopLoading: boolean;
+	deleteTeaShopLoading: boolean;
 	getAllTeaShopsError: Error | null;
-	addTeaShopError: Error | null;
-	constructor(teaShops: TeaShop[], getAllTeaShopsLoading: boolean = false,  addTeaShopLoading: boolean = false, getAllTeaShopsError: Error | null = null, addTeaShopError: Error | null = null) {
+	addOrEditTeaShopError: Error | null;
+	deleteTeaShopError: Error | null;
+	constructor(
+		teaShops: TeaShop[], 
+		getAllTeaShopsLoading: boolean = false,  
+		addOrEditTeaShopLoading: boolean = false, 
+		deleteTeaShopLoading: boolean = false, 
+		getAllTeaShopsError: Error | null = null, 
+		addOrEditTeaShopError: Error | null = null, 
+		deleteTeaShopError: Error | null = null
+	) {
 		this.teaShops = teaShops;
 		this.getAllTeaShopsLoading = getAllTeaShopsLoading;
-		this.addTeaShopLoading = addTeaShopLoading;
+		this.addOrEditTeaShopLoading = addOrEditTeaShopLoading;
+		this.deleteTeaShopLoading = deleteTeaShopLoading;
 		this.getAllTeaShopsError = getAllTeaShopsError;
-		this.addTeaShopError = addTeaShopError;
+		this.addOrEditTeaShopError = addOrEditTeaShopError;
+		this.deleteTeaShopError = deleteTeaShopError;
 	}
 }
 
@@ -114,3 +127,9 @@ export const mockGetAllShopsFromAPI = {data: {teaShops: [testTeaShop]}};
 export const onComponentDidMountOnly: [] = [];
 
 export const testState = new State(initialTeaShopsState);
+
+export const testTeaShopID = '9999999';
+
+export type ReduxStoreState = GlobalAppState;
+
+export const noTeaShopIDError = new Error('Tea Shop object passed as prop has no "id" key');
